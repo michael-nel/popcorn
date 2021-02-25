@@ -40,7 +40,7 @@ namespace Domain.Commands.Movie.GetMovies
             {
                 var skipPages = request.Pages * 10;
                 var total = ((decimal)_repositoryMovie.Get().Count()) / 10;
-                var totalPages = (int)Math.Round(total) + 1;
+                var totalPages = (int)Math.Ceiling(total) + 1;
 
                 var roomCollection = _repositoryMovie.GetOrderFor(x => x.Title).Skip(skipPages).Take(10).ToList();
                 response.Movies = roomCollection;
